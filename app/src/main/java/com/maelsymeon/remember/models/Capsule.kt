@@ -10,18 +10,8 @@ data class Capsule(
     val description: String,
     val creationDate: LocalDateTime = LocalDateTime.now(),
     val unlockDate: LocalDateTime,
-    var isLocked: Boolean = true,
     val mediaList: MutableList<Media> = mutableListOf()
 ) {
-    fun toEntity(userId: String): CapsuleEntity {
-        return CapsuleEntity(
-            id = id.toString(),
-            title = title,
-            description = description,
-            creationDate = creationDate.toString(),
-            unlockDate = unlockDate.toString(),
-            isLocked = isLocked,
-            userId = userId
-        )
-    }
+    val isLocked: Boolean
+        get() = unlockDate.isAfter(LocalDateTime.now())
 }

@@ -20,3 +20,10 @@ data class UserEntity(
         )
     }
 }
+
+// Extension from User to UserEntity
+fun User.toEntity() = UserEntity(
+    id = id.toString(),
+    username = username,
+    email = email,
+)
