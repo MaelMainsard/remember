@@ -14,4 +14,16 @@ data class Capsule(
 ) {
     val isLocked: Boolean
         get() = unlockDate.isAfter(LocalDateTime.now())
+
+    fun toEntity(userId: String): CapsuleEntity {
+        return CapsuleEntity(
+            id = id.toString(),
+            title = title,
+            description = description,
+            creationDate = creationDate.toString(),
+            unlockDate = unlockDate.toString(),
+            userId = userId
+        )
+    }
+
 }

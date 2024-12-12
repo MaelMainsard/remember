@@ -13,6 +13,9 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE id = :userId")
     suspend fun getUserById(userId: String): UserEntity?
 
+    @Query("SELECT * FROM users")
+    suspend fun getUsers(): List<UserEntity?>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertOrUpdateUser(user: UserEntity)
 

@@ -73,7 +73,9 @@ class MainActivity : ComponentActivity() {
 
                 // Insérer les données
                 db.userDao().insertOrUpdateUser(user)
+                
                 db.capsuleDao().insertOrUpdateCapsule(capsule)
+
                 db.mediaDao().insertMedia(media)
 
                 // Vérifier les relations
@@ -102,7 +104,7 @@ class MainActivity : ComponentActivity() {
                 
                 Détails des capsules:
                 ${userWithCapsules.capsules.joinToString("\n") { capsule ->
-                "- ${capsule.title} (${if (capsule.isLocked) "Verrouillée" else "Déverrouillée"})"
+                "- ${capsule.title} (${if (capsule.toModel().isLocked) "Verrouillée" else "Déverrouillée"})"
             }}
             """.trimIndent())
         }
