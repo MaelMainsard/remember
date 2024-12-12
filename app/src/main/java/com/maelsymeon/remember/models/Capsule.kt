@@ -25,4 +25,5 @@ data class Capsule(
             userId = userId
         )
     }
+
 }

@@ -5,6 +5,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.maelsymeon.remember.enums.MediaType
 import com.maelsymeon.remember.models.Media
+import com.maelsymeon.remember.models.User
 import java.util.UUID
 
 @Entity(
@@ -33,3 +34,11 @@ data class MediaEntity(
         )
     }
 }
+
+// Extension from Media to MediaEntity
+fun Media.toEntity(capsuleId: String) = MediaEntity(
+    id = id.toString(),
+    type = type.name,
+    uri = uri,
+    capsuleId = capsuleId
+)

@@ -7,12 +7,4 @@ data class User(
     val username: String,
     val email: String,
     val capsules: MutableList<Capsule> = mutableListOf()
-) {
-    fun toEntity(): UserEntity {
-        return UserEntity(
-            id = id.toString(),
-            username = username,
-            email = email
-        )
-    }
-}
+)

@@ -1,5 +1,6 @@
 package com.maelsymeon.remember.controllers
 
+import com.maelsymeon.remember.entities.toEntity
 import com.maelsymeon.remember.models.User
 import com.maelsymeon.remember.services.UserDao
 

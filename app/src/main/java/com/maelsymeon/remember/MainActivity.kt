@@ -73,7 +73,9 @@ class MainActivity : ComponentActivity() {
 
                 // Insérer les données
                 db.userDao().insertOrUpdateUser(user)
-                db.capsuleDao().insertCapsule(capsule)
+                
+                db.capsuleDao().insertOrUpdateCapsule(capsule)
+
                 db.mediaDao().insertMedia(media)
 
                 // Vérifier les relations
