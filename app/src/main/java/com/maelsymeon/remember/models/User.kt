@@ -1,5 +1,4 @@
 package com.maelsymeon.remember.models
-import com.maelsymeon.remember.entities.UserEntity
 import java.util.UUID
 
 data class User(
