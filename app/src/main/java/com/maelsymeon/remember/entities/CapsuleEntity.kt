@@ -3,6 +3,9 @@ package com.maelsymeon.remember.entities
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.maelsymeon.remember.models.Capsule
+import java.time.LocalDateTime
+import java.util.UUID
 
 @Entity(
     tableName = "capsules",
@@ -24,4 +27,16 @@ data class CapsuleEntity(
     val unlockDate: String,
     var isLocked: Boolean,
     val userId: String  // Foreign key to User
-)
+) {
+    fun toModel(): Capsule {
+        return Capsule(
+            id = UUID.fromString(id),
+            title = title,
+            description = description,
+            creationDate = LocalDateTime.parse(creationDate),
+            unlockDate = LocalDateTime.parse(unlockDate),
+            isLocked = isLocked,
+            mediaList = mutableListOf() // La liste des médias sera chargée séparément
+        )
+    }
+}

@@ -3,6 +3,9 @@ package com.maelsymeon.remember.entities
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.maelsymeon.remember.enums.MediaType
+import com.maelsymeon.remember.models.Media
+import java.util.UUID
 
 @Entity(
     tableName = "media",
@@ -21,4 +24,12 @@ data class MediaEntity(
     val type: String,
     val uri: String,
     val capsuleId: String
-)
+) {
+    fun toModel(): Media {
+        return Media(
+            id = UUID.fromString(id),
+            type = MediaType.valueOf(type),
+            uri = uri
+        )
+    }
+}
