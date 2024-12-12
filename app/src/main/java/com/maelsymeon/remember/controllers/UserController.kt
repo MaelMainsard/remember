@@ -27,6 +27,19 @@ class UserController(
         }
     }
 
+    suspend fun getAllUsers(): Result<List<User>> {
+        return try {
+            val users = userDao.getUsers()
+            if (users.isNotEmpty()) {
+                Result.success(users.map { it!!.toModel() })
+            } else {
+                Result.failure(NoSuchElementException("No users found"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     suspend fun deleteUser(id: String): Result<Unit> {
         return try {
             userDao.deleteById(id)

@@ -25,7 +25,6 @@ data class CapsuleEntity(
     val description: String,
     val creationDate: String,
     val unlockDate: String,
-    var isLocked: Boolean,
     val userId: String  // Foreign key to User
 ) {
     fun toModel(): Capsule {
@@ -35,7 +34,6 @@ data class CapsuleEntity(
             description = description,
             creationDate = LocalDateTime.parse(creationDate),
             unlockDate = LocalDateTime.parse(unlockDate),
-            isLocked = isLocked,
             mediaList = mutableListOf() // La liste des médias sera chargée séparément
         )
     }

@@ -60,7 +60,6 @@ class MainActivity : ComponentActivity() {
                     description = "Une description de test",
                     creationDate = LocalDateTime.now().toString(),
                     unlockDate = LocalDateTime.now().plusDays(1).toString(),
-                    isLocked = true,
                     userId = user.id
                 )
 
@@ -73,7 +72,7 @@ class MainActivity : ComponentActivity() {
                 )
 
                 // Insérer les données
-                db.userDao().insertUser(user)
+                db.userDao().insertOrUpdateUser(user)
                 db.capsuleDao().insertCapsule(capsule)
                 db.mediaDao().insertMedia(media)
 
@@ -103,7 +102,7 @@ class MainActivity : ComponentActivity() {
                 
                 Détails des capsules:
                 ${userWithCapsules.capsules.joinToString("\n") { capsule ->
-                "- ${capsule.title} (${if (capsule.isLocked) "Verrouillée" else "Déverrouillée"})"
+                "- ${capsule.title} (${if (capsule.toModel().isLocked) "Verrouillée" else "Déverrouillée"})"
             }}
             """.trimIndent())
         }
