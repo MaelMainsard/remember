@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -38,6 +40,21 @@ android {
     buildFeatures {
         compose = true
     }
+
+    packaging {
+        resources {
+            excludes.addAll(listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+                "META-INF/DEPENDENCIES",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt"
+            ))
+        }
+    }
+
 }
 
 dependencies {
@@ -53,10 +70,12 @@ dependencies {
     implementation(libs.androidx.room.common)
     implementation(libs.androidx.room.ktx)
     testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.junit.jupiter)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
