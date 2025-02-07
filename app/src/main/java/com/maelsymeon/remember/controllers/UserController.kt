@@ -1,5 +1,6 @@
 package com.maelsymeon.remember.controllers
 
+import com.maelsymeon.remember.entities.UserWithCapsules
 import com.maelsymeon.remember.entities.toEntity
 import com.maelsymeon.remember.models.User
 import com.maelsymeon.remember.services.UserDao
@@ -40,6 +41,20 @@ class UserController(
             Result.failure(e)
         }
     }
+
+    suspend fun getAllUsersWithCapsules(): Result<List<UserWithCapsules>> {
+        return try {
+            val users = userDao.getUsersWithCapsules()
+            if (users.isNotEmpty()) {
+                Result.success(users)
+            } else {
+                Result.failure(NoSuchElementException("No users found"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
 
     suspend fun deleteUser(id: String): Result<Unit> {
         return try {

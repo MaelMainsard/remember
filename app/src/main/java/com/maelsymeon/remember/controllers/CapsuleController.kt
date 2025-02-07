@@ -37,6 +37,15 @@ class CapsuleController(
         }
     }
 
+    suspend fun deleteAllCapsule(): Result<Unit> {
+        return try {
+            capsuleDao.deleteAll()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     private fun validateCapsule(capsule: Capsule) {
         require(capsule.title.isNotBlank()) { "Capsulename cannot be empty" }
         require(capsule.unlockDate.isAfter(capsule.creationDate)) {

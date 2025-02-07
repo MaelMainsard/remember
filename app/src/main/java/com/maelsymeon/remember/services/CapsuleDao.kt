@@ -22,4 +22,7 @@ interface CapsuleDao {
 
     @Query("DELETE FROM capsules WHERE id = :capsuleId")
     suspend fun deleteById(capsuleId: String)
+
+    @Query("DELETE FROM capsules")
+    suspend fun deleteAll()
 }
